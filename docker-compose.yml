@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    tty: true
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: ${TARGET}
+      args:
+        - DOCKER_USER_UID=${DOCKER_USER_UID}
+        - DOCKER_USER_NAME=${DOCKER_USER_NAME}
+        - DOCKER_HOST_PORT=${DOCKER_HOST_PORT}
+        - SERVER_PORT=${SERVER_PORT}
+        - DOCKER_WORK_DIR=${DOCKER_WORK_DIR}
+        - DOCKER_LABEL_KEY=${DOCKER_LABEL_KEY}
+        - DOCKER_LABEL_VALUE=${DOCKER_LABEL_VALUE}
+        - NPM_TOKEN=${NPM_TOKEN}
+        - YARN_TOKEN=${YARN_TOKEN}
+        - TARGET=${TARGET}
+        - NODE_ENV=${NODE_ENV}
+        - GIT_CONFIG_USER_NAME=${GIT_CONFIG_USER_NAME}
+        - GIT_CONFIG_USER_EMAIL=${GIT_CONFIG_USER_EMAIL}
+
+    container_name: ${APP_NAME}-${NODE_ENV}-${TARGET}
+    image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}-${TARGET}
+    secrets:
+      - npmrc
+
+    volumes:
+      - ./:${DOCKER_WORK_DIR}
+
+    ports:
+      - ${DOCKER_HOST_PORT}:${SERVER_PORT}
+
+secrets:
+  npmrc:
+    file: ./.npmrc

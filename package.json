@@ -1,0 +1,36 @@
+{
+  "name": "@bicalho/ssldev",
+  "version": "0.0.32-dev",
+  "description": "Servidor https de desenvolvimento",
+  "author": {
+    "name": "Jackson Bicalho",
+    "email": "jacksonbicalho@gmail.com",
+    "url": "https://jacksonbicalho.github.io/"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/jacksonbicalho/ssldev",
+  "bugs": {
+    "url": "https://github.com/jacksonbicalho/ssldev/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=",
+    "email": "jacksonbicalho@gmail.com"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "after:build": "rimraf --glob './packages/*/tsconfig.tsbuildinfo'",
+    "clean:config": "rimraf --glob './packages/config/build' './packages/config/tsconfig.tsbuildinfo'",
+    "clean:app": "rimraf --glob './packages/app/build' './packages/app/tsconfig.tsbuildinfo'",
+    "clean:all": "yarn clean:config yar clean:app",
+    "build:config": "yarn clean:config && yarn workspace @bicalho/config build",
+    "build:app": "yarn clean:app && yarn workspace @bicalho/app build",
+    "build:all": "yarn build:config && yarn build:app && yarn after:build"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
