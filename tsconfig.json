@@ -6,7 +6,6 @@
     "composite": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "importsNotUsedAsValues": "error",
     "stripInternal": true,
     "strict": true,
     /* Additional Checks */
@@ -16,19 +15,22 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     /* This needs to be false so our types are possible to consume without setting this */
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "isolatedModules": true,
     "skipLibCheck": false,
     "resolveJsonModule": true,
-    // // TODO: remove for Jest 30
-    "ignoreDeprecations": "5.0"
+    "baseUrl": "."
   },
+  "exclude": ["packages/**/__tests__/**", "packages/**/build/**"],
   "references": [
     {
-       "path": "./packages/config"
+      "path": "./packages/config"
     },
     {
-       "path": "./packages/app"
+      "path": "./packages/ssldev"
+    },
+    {
+      "path": "./packages/utilities"
     }
   ]
 }

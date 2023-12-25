@@ -14,7 +14,7 @@ type ConfigT<T> = {
   [K in keyof T]: ConfigValue<T[K]>;
 };
 
-function asConfig<T>(config: ConfigT<T>): ConfigT<T> {
+export function asConfig<T>(config: ConfigT<T>): ConfigT<T> {
   return config;
 }
 
@@ -28,7 +28,8 @@ export class Config {
   getConfig = (key?: string): typeof this.default => {
     if (key) {
       if (this.default.hasOwnProperty(key)) {
-        return this.default[key as never];
+        // @ts-ignore: Unreachable code error
+        return this.default[key];
       }
     }
 
@@ -58,5 +59,5 @@ export class Config {
       await fn();
     }
     return this;
-  }
+  };
 }

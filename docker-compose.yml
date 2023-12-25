@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     build:
-      context: .
+      context: ./
       dockerfile: ./Dockerfile
       target: ${TARGET}
       args:

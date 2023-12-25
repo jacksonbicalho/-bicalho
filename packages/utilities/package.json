@@ -1,7 +1,7 @@
 {
-  "name": "@bicalho/config",
-  "version": "0.0.2-dev",
-  "description": "Configuration",
+  "name": "@bicalho/utilities",
+  "version": "0.0.1-dev",
+  "description": "utilities",
   "author": {
     "name": "Jackson Bicalho",
     "email": "jacksonbicalho@gmail.com",

@@ -1,0 +1,40 @@
+{
+  "coverageConfig": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,ts}",
+      "*/*.{js,ts}",
+      "!**/node_modules/**",
+      "!**/jest/**",
+      "!**/coverage/**",
+      "!**/dist/**",
+      "!**/main.ts",
+      "!**/*.d.ts",
+      "!*.config.{js,ts}"
+    ],
+    "coverageReporters": [
+      "clover",
+      "json",
+      "lcov",
+      "json-summary",
+      [
+        "text",
+        {
+          "skipFull": false,
+          "file": "coverage.txt"
+        }
+      ]
+    ],
+    "coverageDirectory": "<rootDir>/coverage",
+    "coverageThreshold": {
+      "global": {
+        "lines": 13.08,
+        "statements": 10.44,
+        "functions": 5.17,
+        "branches": 6.61,
+        "branchesTrue": 100
+      }
+    },
+    "globalTeardown": "./jest/jest.teardown.config.ts"
+  }
+}

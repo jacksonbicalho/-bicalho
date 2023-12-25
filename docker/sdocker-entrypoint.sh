@@ -2,8 +2,8 @@
 set -e
 
 if [ "$1" = 'yarn' ]; then
-  exec yarn "$@"
+  exec /usr/local/bin/yarn "$@"
 fi
 
-exec "$@"
+echo $@
 
