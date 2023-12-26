@@ -111,6 +111,8 @@ ENV GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
 
 RUN --mount=type=secret,id=npmrc,target=${DOCKER_WORK_DIR}/.npmrc
 RUN --mount=type=secret,id=ssh_github,target=/home/${DOCKER_USER_NAME}/.ssh/github
+RUN eval "$(ssh-agent -s)"
+RUN ssh-add /home/${DOCKER_USER_NAME}/.ssh/github
 
 ENV NODE_REPL_HISTORY=''
 
