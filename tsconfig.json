@@ -24,7 +24,7 @@
   "exclude": ["packages/**/__tests__/**", "packages/**/build/**"],
   "references": [
     {
-      "path": "./packages/config"
+      "path": "./packages/custom-config"
     },
     {
       "path": "./packages/ssldev"

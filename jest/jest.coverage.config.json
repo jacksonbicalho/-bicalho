@@ -7,7 +7,8 @@
       "!**/node_modules/**",
       "!**/jest/**",
       "!**/coverage/**",
-      "!**/dist/**",
+      "!**/build/**",
+      "!**/examples/**",
       "!**/main.ts",
       "!**/*.d.ts",
       "!*.config.{js,ts}"
@@ -16,6 +17,7 @@
       "clover",
       "json",
       "lcov",
+      "html-spa",
       "json-summary",
       [
         "text",
@@ -28,10 +30,10 @@
     "coverageDirectory": "<rootDir>/coverage",
     "coverageThreshold": {
       "global": {
-        "lines": 13.08,
-        "statements": 10.44,
-        "functions": 5.17,
-        "branches": 6.61,
+        "lines": 70,
+        "statements": 71.42,
+        "functions": 56.25,
+        "branches": 75,
         "branchesTrue": 100
       }
     },

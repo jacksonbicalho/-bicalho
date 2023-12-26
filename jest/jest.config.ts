@@ -19,7 +19,7 @@ const jestConfig: JestConfigWithTsJest = {
   setupFiles: ['./jest/jest.setup.ts'],
   detectOpenHandles: true,
   cache: false,
-  // testPathIgnorePatterns: ['helpers.ts']
+  testPathIgnorePatterns: ["<rootDir>/packages/*/build", "<rootDir>/packages/*/examples/*"]
 }
 
 const args = process.argv.slice(2)

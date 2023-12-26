@@ -14,10 +14,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build:config": "yarn workspace @bicalho/config build",
+    "build:custom-config": "yarn workspace @bicalho/custom-config build",
     "build:ssldev": "yarn workspace @bicalho/ssldev build",
     "build:utilities": "yarn workspace @bicalho/utilities build",
-    "build:all": "yarn build:config && yarn build:ssldev && yarn build:utilities",
+    "build:all": "yarn build:custom-config && yarn build:ssldev && yarn build:utilities",
     "test": "yarn lint && jest --config jest/jest.config.ts",
     "test:cov": "rm -rf coverage && jest --coverage --config jest/jest.config.ts",
     "format:base": "prettier \"packages/**/src/*.ts\" \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
@@ -27,6 +27,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
+    "@bicalho/utilities": "0.0.1-dev",
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.5",
@@ -42,8 +43,7 @@
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "@bicalho/utilities": "0.0.1-dev"
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=16.0.0"

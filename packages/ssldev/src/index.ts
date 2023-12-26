@@ -1,15 +1,25 @@
-import { Config } from "@bicalho/config";
-import { server } from "./server";
 import * as path from "node:path";
 import * as fs from "node:fs";
+import { server, configServer, configServerDefault } from "./server";
+import type { ServerConfigType } from "./server";
 
 class SslDev {
-  constructor(readonly configServer: unknown) {
+  constructor(private configServer: ServerConfigType) {
     this.configServer = configServer;
+    return this;
+  }
+
+  configure(configServer: ServerConfigType) {
+    const currenConfig = this.configServer;
+    this.configServer = {
+      ...currenConfig,
+      ...configServer,
+    };
+    return this;
   }
 
   run() {
-    const { rootApp, keysPath, publicDomain, webPort } = configServer as never;
+    const { rootApp, keysPath, publicDomain, webPort } = this.configServer;
     const sslFiles: { key: string; cert: string } = {
       key: path.resolve(`${rootApp}`, `${keysPath}`, `${publicDomain}.key.pem`),
       cert: path.resolve(
@@ -31,27 +41,12 @@ class SslDev {
       cert: fs.readFileSync(sslFiles.cert),
     };
 
-    const bootstrap = server(options, configServer);
+    const bootstrap = server(options, this.configServer);
     bootstrap.listen(webPort, () => {
       console.log(`Running at https://${publicDomain}:${webPort}`);
     });
   }
 }
 
-const configDefault = {
-  rootApp: path.resolve(`${process.env.PWD}`),
-  publicDomain: "localhost",
-  contenPublic: "example",
-  webPort: 8081,
-  keysPath: "ssl",
-  renderSingle: false,
-  cleanUrls: ["/**"],
-  rewrites: [{ source: "app/**", destination: "/index.html" }],
-};
-
-const config = new Config().configure(configDefault);
-const configServer = config.getConfig();
-
-const sslldev = new SslDev(configServer);
-
-export { sslldev };
+const sslldev = new SslDev(configServerDefault);
+export { sslldev, configServer };
