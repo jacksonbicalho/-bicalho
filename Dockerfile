@@ -111,15 +111,21 @@ ENV GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
 
 RUN --mount=type=secret,id=npmrc,target=${DOCKER_WORK_DIR}/.npmrc
 RUN --mount=type=secret,id=ssh_github,target=/home/${DOCKER_USER_NAME}/.ssh/github
-RUN eval "$(ssh-agent -s)"
-RUN ssh-add /home/${DOCKER_USER_NAME}/.ssh/github
 
 ENV NODE_REPL_HISTORY=''
+
+RUN echo $(./scripts/ssh-key.sh) >> /home/${DOCKER_USER_NAME}/.ssh/github
+
+# RUN eval $(ssh-agent -s)
+# RUN ssh-add /home/${DOCKER_USER_NAME}/.ssh/github
+
 
 USER ${DOCKER_USER_NAME}
 
 RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
   && git config --global user.email "${GIT_CONFIG_USER_EMAIL}"
+
+
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
