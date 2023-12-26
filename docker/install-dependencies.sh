@@ -3,7 +3,6 @@
 set -e
 
 rm -rf ${DOCKER_WORK_DIR}/node_modules
-rm -rf ${DOCKER_WORK_DIR}/build
 
 
 if [[ -n "${FAIL_ON_DIRTY_LOCKFILE}" ]]; then

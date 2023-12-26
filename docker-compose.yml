@@ -31,7 +31,6 @@ services:
 
     volumes:
       - ./:${DOCKER_WORK_DIR}
-      - ~/.ssh/github:/home/bicalho/.ssh/github
 
     ports:
       - ${DOCKER_HOST_PORT}:${SERVER_PORT}
@@ -39,3 +38,5 @@ services:
 secrets:
   npmrc:
     file: ./.npmrc
+  ssh_github:
+    file: ~/.ssh/github

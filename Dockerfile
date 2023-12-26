@@ -102,20 +102,22 @@ RUN ls -l \
   && /usr/local/bin/node-prune \
   && chown -R ${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./
 
-ENV GIT_CONFIG_USER_NAME ${GIT_CONFIG_USER_NAME}
+ARG GIT_CONFIG_USER_NAME ${GIT_CONFIG_USER_NAME}
 ENV GIT_CONFIG_USER_NAME ${GIT_CONFIG_USER_NAME}
 
-ENV GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
+ARG GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
 ENV GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
 
-RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
-  && git config --global user.email "${GIT_CONFIG_USER_EMAIL}"
 
 RUN --mount=type=secret,id=npmrc,target=${DOCKER_WORK_DIR}/.npmrc
+RUN --mount=type=secret,id=ssh_github,target=/home/${DOCKER_USER_NAME}/.ssh/github
 
 ENV NODE_REPL_HISTORY=''
 
 USER ${DOCKER_USER_NAME}
+
+RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
+  && git config --global user.email "${GIT_CONFIG_USER_EMAIL}"
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 

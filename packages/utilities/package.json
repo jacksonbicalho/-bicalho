@@ -1,6 +1,6 @@
 {
   "name": "@bicalho/utilities",
-  "version": "0.0.1-dev",
+  "version": "0.0.5-dev",
   "description": "utilities",
   "author": {
     "name": "Jackson Bicalho",
@@ -22,7 +22,6 @@
   "scripts": {
     "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.10.5",
     "ts-node": "^10.9.2",
