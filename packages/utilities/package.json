@@ -1,0 +1,33 @@
+{
+  "name": "@bicalho/utilities",
+  "version": "0.0.5-dev",
+  "description": "utilities",
+  "author": {
+    "name": "Jackson Bicalho",
+    "email": "jacksonbicalho@gmail.com",
+    "url": "https://jacksonbicalho.github.io/"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/jacksonbicalho/ssldev",
+  "bugs": {
+    "url": "https://github.com/jacksonbicalho/ssldev/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=",
+    "email": "jacksonbicalho@gmail.com"
+  },
+  "files": [
+    "build/",
+    "index.ts"
+  ],
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules
+dist
+
+# configs
+*.config.js
+jest.setup.ts
+
+#docker
+docker/*.sh
+
+#.github
+.github/*
+
+.eslintrc.js
