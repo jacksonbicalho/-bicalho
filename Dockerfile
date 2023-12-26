@@ -53,6 +53,7 @@ RUN rm -rf /usr/local/bin/yarn \
   && apk --no-cache update \
   && apk --no-cache upgrade \
   && apk add --no-cache \
+  openssh \
   bash \
   make \
   python3 \
@@ -84,7 +85,8 @@ RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
   && adduser -S -G ${DOCKER_USER_NAME} -u ${DOCKER_USER_UID} ${DOCKER_USER_NAME} \
  --shell /bin/bash \
  --home /home/${DOCKER_USER_NAME} \
- -k /etc/skel
+ -k /etc/skel \
+ && mkdir /home/${DOCKER_USER_NAME}/.ssh
 
 WORKDIR ${DOCKER_WORK_DIR}
 
