@@ -60,6 +60,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "global": "^4.4.0",
     "jest-serializer-ansi": "^1.0.3"
   },
   "packageManager": "yarn@1.22.19"
