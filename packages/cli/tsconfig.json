@@ -7,5 +7,11 @@
     "outDir": "build"
   },
   "typeRoots": ["node_modules/@types"],
-  "include": ["src", "../cli/src/package-json.ts"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../custom-config"
+    }
+  ]
 }
+

@@ -1,10 +1,10 @@
 import type { JestConfigWithTsJest } from "ts-jest";
 import { readFileSync, writeFileSync } from "fs";
 import path from "path";
-import { CONSTANTS } from "./constants";
+import { COVERAGE_PATCH } from "./constants";
 import { utilities } from "@bicalho/utilities";
 
-const coverageSummaryFilePath = path.join(__dirname, "..", CONSTANTS.SSLDEV_COVERAGE_PATCH, "coverage-summary.json");
+const coverageSummaryFilePath = path.join(__dirname, "..", COVERAGE_PATCH, "coverage-summary.json");
 const content = utilities.getJson(coverageSummaryFilePath);
 
 console.log("[2023-12-24 05:26:06] >>>>> content: ", content);

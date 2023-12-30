@@ -48,7 +48,6 @@ RUN rm -rf ./cache
 RUN rm -rf /usr/local/bin/yarn \
   && rm -rf /usr/local/bin/yarnpkg \
   && npm uninstall --loglevel warn --global pnpm \
-  # && npm uninstall --loglevel warn --global npm \
   && deluser --remove-home node \
   && apk --no-cache update \
   && apk --no-cache upgrade \
@@ -85,8 +84,7 @@ RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
   && adduser -S -G ${DOCKER_USER_NAME} -u ${DOCKER_USER_UID} ${DOCKER_USER_NAME} \
  --shell /bin/bash \
  --home /home/${DOCKER_USER_NAME} \
- -k /etc/skel \
- && mkdir /home/${DOCKER_USER_NAME}/.ssh
+ -k /etc/skel
 
 WORKDIR ${DOCKER_WORK_DIR}
 
@@ -102,10 +100,10 @@ RUN ls -l \
   && /usr/local/bin/node-prune \
   && chown -R ${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./
 
-ARG GIT_CONFIG_USER_NAME ${GIT_CONFIG_USER_NAME}
+ARG GIT_CONFIG_USER_NAME
 ENV GIT_CONFIG_USER_NAME ${GIT_CONFIG_USER_NAME}
 
-ARG GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
+ARG GIT_CONFIG_USER_EMAIL
 ENV GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
 
 
@@ -118,8 +116,7 @@ USER ${DOCKER_USER_NAME}
 RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
   && git config --global user.email "${GIT_CONFIG_USER_EMAIL}"
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "node" ]
 
 
@@ -147,7 +144,6 @@ ENV YARN_TOKEN ${YARN_TOKEN}
 
 EXPOSE ${SERVER_PORT}
 
-CMD [ "node" ]
 
 ##################################
 # publish

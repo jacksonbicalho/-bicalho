@@ -1,0 +1,14 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "npmClient": "yarn",
+  "command": {
+    "version": {
+      "conventionalCommits": true
+    }
+  },
+  "version": "0.0.0-dev",
+  "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
+  "useWorkspaces": true
+}

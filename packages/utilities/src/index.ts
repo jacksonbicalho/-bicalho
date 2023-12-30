@@ -7,16 +7,18 @@
 
 import { readFileSync } from "fs";
 
+/* eslint-disable @typescript-eslint/no-this-alias */
 class Utilities {
   getJson = (jsonFile: string) => {
-    const content = JSON.parse(
-      readFileSync(jsonFile, {
-        encoding: "utf-8",
-        flag: "r",
-      }),
-    );
+    const data = readFileSync(jsonFile, {
+      encoding: "utf-8",
+      flag: "r",
+    });
 
-    return content;
+    return JSON.parse(data.replace(
+      /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+      (m, g) => (g ? "" : m),
+    ));
   };
 }
 export const utilities = new Utilities();

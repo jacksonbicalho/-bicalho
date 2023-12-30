@@ -1,15 +1,16 @@
 {
   "name": "@bicalho/monorepo",
+  "private": true,
   "version": "0.0.0",
   "description": "Servidor https de desenvolvimento",
   "author": "Jackson Bicalho <jacksonbicalho@gmail.com> (https://jacksonbicalho.github.io/)",
   "license": "MIT",
   "homepage": "https://github.com/jacksonbicalho/ssldev",
+  "repository": "git@github.com:jacksonbicalho/bicalho.git",
   "bugs": {
     "url": "https://github.com/jacksonbicalho/ssldev/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=",
     "email": "jacksonbicalho@gmail.com"
   },
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -17,21 +18,31 @@
     "build:custom-config": "yarn workspace @bicalho/custom-config build",
     "build:ssldev": "yarn workspace @bicalho/ssldev build",
     "build:utilities": "yarn workspace @bicalho/utilities build",
-    "build:all": "yarn build:custom-config && yarn build:ssldev && yarn build:utilities",
+    "build:cli": "yarn workspace @bicalho/cli build",
+    "build:all": "yarn build:custom-config && yarn build:ssldev && yarn build:utilities && yarn build:cli",
     "test": "yarn lint && jest --config jest/jest.config.ts",
     "test:cov": "rm -rf coverage && jest --coverage --config jest/jest.config.ts",
     "format:base": "prettier \"packages/**/src/*.ts\" \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
     "format": "yarn format:base --check",
     "format:fix": "yarn format:base --write",
     "lint": "eslint \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "new-version": "lerna version",
+    "new-publish": "lerna publish from-package",
+    "preview:new-version": "lerna version --dry-run",
+    "run-tests": "lerna run test"
   },
   "devDependencies": {
+    "@commander-js/extra-typings": "^11.1.0",
     "@jest/globals": "^29.7.0",
+    "@lerna-lite/cli": "^3.1.0",
+    "@lerna-lite/publish": "^3.1.0",
+    "@lerna-lite/version": "^3.1.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.5",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
+    "commander": "^11.1.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
@@ -42,13 +53,14 @@
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
+    "types-package-json": "^2.0.39",
     "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=16.0.0"
   },
-  "repository": "git@github.com:jacksonbicalho/bicalho.git",
   "dependencies": {
     "jest-serializer-ansi": "^1.0.3"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
