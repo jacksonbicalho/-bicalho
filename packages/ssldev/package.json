@@ -24,6 +24,7 @@
     "start": "node ./build/index.js"
   },
   "dependencies": {
+    "@bicalho/custom-config": "^0.0.5-dev",
     "serve-handler": "^6.1.5"
   },
   "devDependencies": {
