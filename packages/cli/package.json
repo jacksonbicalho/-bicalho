@@ -1,6 +1,6 @@
 {
   "name": "@bicalho/cli",
-  "version": "0.0.1-dev",
+  "version": "0.0.1-dev.0",
   "description": "Cli",
   "author": {
     "name": "Jackson Bicalho",
@@ -24,12 +24,12 @@
     "start": "node ./build/index.js"
   },
   "dependencies": {
-    "serve-handler": "^6.1.5",
     "commander": "^11.1.0",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "serve-handler": "^6.1.5"
   },
   "devDependencies": {
-    "@bicalho/custom-config": "^0.0.5-dev",
+    "@bicalho/custom-config": "^0.0.5-dev.0",
     "@types/node": "^20.10.5",
     "@types/prompts": "^2.4.8",
     "@types/semver": "^7.5.6",
