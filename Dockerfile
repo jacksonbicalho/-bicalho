@@ -82,9 +82,9 @@ RUN cp /etc/skel/.bashrc /etc/skel/.profile
 
 RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
   && adduser -S -G ${DOCKER_USER_NAME} -u ${DOCKER_USER_UID} ${DOCKER_USER_NAME} \
- --shell /bin/bash \
- --home /home/${DOCKER_USER_NAME} \
- -k /etc/skel
+  --shell /bin/bash \
+  --home /home/${DOCKER_USER_NAME} \
+  -k /etc/skel
 
 WORKDIR ${DOCKER_WORK_DIR}
 
@@ -100,18 +100,26 @@ RUN ls -l \
   && /usr/local/bin/node-prune \
   && chown -R ${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./
 
+RUN --mount=type=secret,id=npmrc,target=${DOCKER_WORK_DIR}/.npmrc
+
+ENV NODE_REPL_HISTORY=''
+
+USER ${DOCKER_USER_NAME}
+
 ARG GIT_CONFIG_USER_NAME
 ENV GIT_CONFIG_USER_NAME ${GIT_CONFIG_USER_NAME}
 
 ARG GIT_CONFIG_USER_EMAIL
 ENV GIT_CONFIG_USER_EMAIL ${GIT_CONFIG_USER_EMAIL}
 
+ARG GIT_PRIVATE_KEY
+ENV GIT_PRIVATE_KEY ${GIT_PRIVATE_KEY}
 
-RUN --mount=type=secret,id=npmrc,target=${DOCKER_WORK_DIR}/.npmrc
-
-ENV NODE_REPL_HISTORY=''
-
-USER ${DOCKER_USER_NAME}
+RUN mkdir -p /home/${DOCKER_USER_NAME}/.ssh && \
+  chmod 0700 /home/${DOCKER_USER_NAME}/.ssh && \
+  ssh-keyscan github.com > /home/${DOCKER_USER_NAME}/.ssh/known_hosts && \
+  echo "${GIT_PRIVATE_KEY}" > /home/${DOCKER_USER_NAME}/.ssh/id_rsa && \
+  chmod 600 /home/${DOCKER_USER_NAME}/.ssh/id_rsa
 
 RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
   && git config --global user.email "${GIT_CONFIG_USER_EMAIL}"

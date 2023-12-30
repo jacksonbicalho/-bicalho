@@ -23,6 +23,7 @@ services:
         - NODE_ENV=${NODE_ENV}
         - GIT_CONFIG_USER_NAME=${GIT_CONFIG_USER_NAME}
         - GIT_CONFIG_USER_EMAIL=${GIT_CONFIG_USER_EMAIL}
+        - GIT_PRIVATE_KEY=${GIT_PRIVATE_KEY}
 
     container_name: ${APP_NAME}-${NODE_ENV}-${TARGET}
     image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}-${TARGET}
@@ -31,6 +32,7 @@ services:
 
     volumes:
       - ./:${DOCKER_WORK_DIR}
+      - /home/jackson/.sshgithub:/home/${DOCKER_USER_NAME}/.ssh/github
 
     ports:
       - ${DOCKER_HOST_PORT}:${SERVER_PORT}

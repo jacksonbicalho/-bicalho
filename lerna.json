@@ -8,7 +8,7 @@
       "conventionalCommits": true
     }
   },
-  "version": "0.0.0-dev",
+  "version": "independent",
   "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
   "useWorkspaces": true
 }

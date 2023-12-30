@@ -28,8 +28,8 @@
     "lint": "eslint \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
     "lint:fix": "yarn lint --fix",
     "new-version": "lerna version",
-    "new-publish": "lerna publish from-package",
-    "preview:new-version": "lerna version --dry-run",
+    "publish:all": "lerna publish --sync-workspace-lock",
+    "preview:new-version": "lerna version --sync-workspace-lock",
     "run-tests": "lerna run test"
   },
   "devDependencies": {
