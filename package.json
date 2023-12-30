@@ -27,16 +27,16 @@
     "format:fix": "yarn format:base --write",
     "lint": "eslint \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
     "lint:fix": "yarn lint --fix",
-    "new-version": "lerna version",
-    "publish:all": "lerna publish --sync-workspace-lock",
-    "preview:new-version": "lerna version --sync-workspace-lock",
-    "run-tests": "lerna run test"
+    "new-version": "npx lerna version",
+    "publish:all": "npx lerna publish --sync-workspace-lock",
+    "preview:new-version": "npx lerna version --dry-run --sync-workspace-lock"
   },
   "devDependencies": {
     "@commander-js/extra-typings": "^11.1.0",
     "@jest/globals": "^29.7.0",
     "@lerna-lite/cli": "^3.1.0",
     "@lerna-lite/publish": "^3.1.0",
+    "@lerna-lite/run": "^3.1.0",
     "@lerna-lite/version": "^3.1.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.5",
@@ -61,7 +61,8 @@
   },
   "dependencies": {
     "global": "^4.4.0",
-    "jest-serializer-ansi": "^1.0.3"
+    "jest-serializer-ansi": "^1.0.3",
+    "remove": "^0.1.5"
   },
   "packageManager": "yarn@1.22.19"
 }

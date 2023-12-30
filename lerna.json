@@ -1,14 +1,14 @@
 {
+  "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
+  "useWorkspaces": true,
   "packages": [
     "packages/*"
   ],
+  "version": "independent",
   "npmClient": "yarn",
   "command": {
     "version": {
       "conventionalCommits": true
     }
-  },
-  "version": "independent",
-  "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
-  "useWorkspaces": true
+  }
 }
