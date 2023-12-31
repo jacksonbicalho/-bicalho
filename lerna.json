@@ -14,8 +14,7 @@
     },
     "publish": {
       "conventionalCommits": true,
-      "message": "chore(release): publish new version %v",
-      "registry": "https://registry.npmjs.org"
+      "message": "chore(release): publish new version %v"
     }
   }
 }
