@@ -64,5 +64,17 @@
     "jest-serializer-ansi": "^1.0.3",
     "remove": "^0.1.5"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@1.22.19",
+  "changelog": {
+    "labels": {
+      "Type: monorepo": "monorepo",
+      "Type: cli": "cli",
+      "Type: custom-config": "custom-config",
+      "Type: ssldev": "ssldev",
+      "Type: utilities": "utilities",
+      "Type: Feature": "Features",
+      "Type: Bug": "Bug fixes",
+      "Type: Enhancement": "Enhancements"
+    }
+  }
 }
