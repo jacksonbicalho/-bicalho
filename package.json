@@ -28,7 +28,7 @@
     "lint": "eslint \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
     "lint:fix": "yarn lint --fix",
     "new-version": "npx lerna version",
-    "publish:all": "yarn cache clean --all && yarn test && yarn build:all && npx lerna publish --sync-workspace-lock",
+    "publish:all": "yarn cache clean --all && yarn test && yarn build:all && npx lerna publish",
     "preview:new-version": "npx lerna version --dry-run --sync-workspace-lock",
     "commitlint": "commitlint --edit"
   },

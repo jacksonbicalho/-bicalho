@@ -8,7 +8,9 @@
   "npmClient": "yarn",
   "command": {
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "conventional-prerelease": true,
+      "sync-workspace-lock": true
     }
   }
 }
