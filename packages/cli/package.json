@@ -1,16 +1,21 @@
 {
   "name": "@bicalho/cli",
   "version": "0.0.1-dev.2",
-  "description": "Cli",
+  "description": "Cli - ferramentas",
   "author": {
     "name": "Jackson Bicalho",
     "email": "jacksonbicalho@gmail.com",
     "url": "https://jacksonbicalho.github.io/"
   },
   "license": "MIT",
-  "homepage": "https://github.com/jacksonbicalho/ssldev",
+  "homepage": "https://github.com/jacksonbicalho/bicalho/tree/master/packages/cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacksonbicalho/bicalho.git",
+    "directory": "packages/cli"
+  },
   "bugs": {
-    "url": "https://github.com/jacksonbicalho/ssldev/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=",
+    "url": "https://github.com/jacksonbicalho/bicalho/issues/new?labels=bug,cli",
     "email": "jacksonbicalho@gmail.com"
   },
   "files": [
@@ -19,6 +24,14 @@
   ],
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "require": "./build/index.js",
+      "default": "./build/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo",
     "start": "node ./build/index.js"
@@ -38,7 +51,7 @@
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "^18.12.0"
   },
   "publishConfig": {
     "access": "public"
