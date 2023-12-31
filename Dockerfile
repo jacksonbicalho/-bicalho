@@ -54,6 +54,7 @@ RUN rm -rf /usr/local/bin/yarn \
   && apk add --no-cache \
   openssh \
   bash \
+  bash-completion \
   make \
   python3 \
   curl \
@@ -73,6 +74,7 @@ RUN rm -rf /usr/local/bin/yarn \
 RUN mkdir -p /etc/skel/
 
 RUN <<EOF cat >> /etc/skel/.bashrc
+ source /etc/bash/bash_completion.sh
  set autologout = 30
  set prompt = "$ "
  set history = 0
