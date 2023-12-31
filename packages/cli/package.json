@@ -1,6 +1,6 @@
 {
   "name": "@bicalho/cli",
-  "version": "0.0.1-dev.1",
+  "version": "0.0.1-dev.2",
   "description": "Cli",
   "author": {
     "name": "Jackson Bicalho",
@@ -29,7 +29,7 @@
     "serve-handler": "^6.1.5"
   },
   "devDependencies": {
-    "@bicalho/custom-config": "^0.0.5-dev.1",
+    "@bicalho/custom-config": "^0.0.5-dev.2",
     "@types/node": "^20.10.5",
     "@types/prompts": "^2.4.8",
     "@types/semver": "^7.5.6",
