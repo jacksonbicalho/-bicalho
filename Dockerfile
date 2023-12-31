@@ -73,23 +73,26 @@ RUN rm -rf /usr/local/bin/yarn \
 RUN mkdir -p /etc/skel/
 
 RUN <<EOF cat >> /etc/skel/.bashrc
-  source /etc/bash/bash_completion.sh
-  parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-  }
-  PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(parse_git_branch)\$ "
-  set autologout = 30
-  set prompt = "$ "
-  set history = 0
- set ignoreeof
+source /etc/bash/bash_completion.sh
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+set autologout = 30
+set prompt = "$ "
+set history = 0
+set ignoreeof
+PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 EOF
 RUN cp /etc/skel/.bashrc /etc/skel/.profile
+
 
 RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
   && adduser -S -G ${DOCKER_USER_NAME} -u ${DOCKER_USER_UID} ${DOCKER_USER_NAME} \
   --shell /bin/bash \
   --home /home/${DOCKER_USER_NAME} \
   -k /etc/skel
+
+RUN cat /etc/profile > /home/${DOCKER_USER_NAME}/.profile
 
 WORKDIR ${DOCKER_WORK_DIR}
 
