@@ -11,6 +11,11 @@
       "conventionalCommits": true,
       "conventional-prerelease": true,
       "sync-workspace-lock": true
+    },
+    "publish": {
+      "conventionalCommits": true,
+      "message": "chore(release): publish new version %v",
+      "registry": "https://registry.npmjs.org"
     }
   }
 }
