@@ -65,6 +65,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "@bicalho/utilities": "^0.0.5-dev.2",
     "global": "^4.4.0",
     "jest-serializer-ansi": "^1.0.3",
     "remove": "^0.1.5"

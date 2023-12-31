@@ -18,10 +18,6 @@
     "url": "https://github.com/jacksonbicalho/bicalho/issues/new?labels=bug,cli",
     "email": "jacksonbicalho@gmail.com"
   },
-  "files": [
-    "build/",
-    "index.ts"
-  ],
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "exports": {
@@ -32,9 +28,12 @@
     },
     "./package.json": "./package.json"
   },
+  "bin": {
+    "cli": "./build/bin/cli.js"
+  },
   "scripts": {
     "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo",
-    "start": "node ./build/index.js"
+    "cli": "node  ./build/bin/cli.js"
   },
   "dependencies": {
     "@bicalho/custom-config": "0.0.5-dev.2",
@@ -43,6 +42,7 @@
     "serve-handler": "^6.1.5"
   },
   "devDependencies": {
+    "@types/import-local": "^3.1.2",
     "@types/node": "^20.10.5",
     "@types/prompts": "^2.4.8",
     "@types/semver": "^7.5.6",

@@ -1423,6 +1423,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/import-local@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@types/import-local/-/import-local-3.1.2.tgz#86cc316f29c08356ce456e48cee6a1cb54e8c5bd"
+  integrity sha512-JoLrjY0vikldvoHv/efsV1gAqZAgPVS+eLK5+3ThLs1zsViz8kkMTJ0GQOKP8ncBc9M/mDl59bkdnqercE7JBw==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.6.tgz#7739c232a1fee9b4d3ce8985f314c0c6d33549d7"
