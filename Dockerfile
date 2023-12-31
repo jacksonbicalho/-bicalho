@@ -74,15 +74,12 @@ RUN mkdir -p /etc/skel/
 
 RUN <<EOF cat >> /etc/skel/.bashrc
 source /etc/bash/bash_completion.sh
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
 set autologout = 30
 set prompt = "$ "
 set history = 0
 set ignoreeof
-PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 EOF
+
 RUN cp /etc/skel/.bashrc /etc/skel/.profile
 
 
