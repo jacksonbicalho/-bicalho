@@ -29,10 +29,13 @@
     "lint:fix": "yarn lint --fix",
     "new-version": "npx lerna version",
     "publish:all": "yarn cache clean --all && yarn test && yarn build:all && npx lerna publish --sync-workspace-lock",
-    "preview:new-version": "npx lerna version --dry-run --sync-workspace-lock"
+    "preview:new-version": "npx lerna version --dry-run --sync-workspace-lock",
+    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
     "@commander-js/extra-typings": "^11.1.0",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-lerna-scopes": "^18.4.3",
     "@jest/globals": "^29.7.0",
     "@lerna-lite/cli": "^3.1.0",
     "@lerna-lite/publish": "^3.1.0",
@@ -46,6 +49,7 @@
     "dotenv": "^16.3.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
     "jest": "^29.7.0",
     "jest-fetch-mock": "^3.0.3",
     "jest-serializer-ansi-escapes": "^2.0.1",
