@@ -2,7 +2,6 @@ ARG DOCKER_WORK_DIR_DEFAULT=/usr/src/app
 ARG NODE_VERSION=18.18.2
 ARG YARN_VERSION=1.22.19
 
-
 # #############################
 # # base: build for Base
 # #############################
