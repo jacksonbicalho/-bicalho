@@ -35,9 +35,6 @@
   "devDependencies": {
     "@bicalho/cli": "^0.0.1-dev.5",
     "@commander-js/extra-typings": "^11.1.0",
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@commitlint/prompt-cli": "^18.4.3",
     "@jest/globals": "^29.7.0",
     "@lerna-lite/publish": "^3.1.0",
     "@lerna-lite/version": "^3.1.0",
@@ -48,8 +45,6 @@
     "@typescript-eslint/parser": "^6.16.0",
     "commander": "^11.1.0",
     "commitizen": "^4.3.0",
-    "conventional-changelog-atom": "^4.0.0",
-    "conventional-changelog-conventionalcommits": "^7.0.2",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.56.0",
