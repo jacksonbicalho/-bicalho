@@ -22,6 +22,7 @@ const commands: Array<string> = ["init"];
 const runCommand = async (
   command: typeof methodsLocal,
   args: unknown[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 ): Promise<void> => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const cp = require("child_process");
