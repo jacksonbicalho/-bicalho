@@ -29,7 +29,6 @@
     "lint:fix": "yarn lint --fix",
     "new-version": "npx lerna version",
     "publish:all": "yarn cache clean --all && yarn test && yarn build:all && npx lerna publish",
-    "commitizen": "npx commitizen",
     "commit": "cz",
     "cli": "npx @bicalho/cli"
   },
@@ -78,23 +77,6 @@
     "remove": "^0.1.5"
   },
   "packageManager": "yarn@1.22.19",
-  "changelog": {
-    "labels": {
-      "Type: monorepo": "monorepo",
-      "Type: cli": "cli",
-      "Type: custom-config": "custom-config",
-      "Type: ssldev": "ssldev",
-      "Type: utilities": "utilities",
-      "Type: Feature": "Features",
-      "Type: Bug": "Bug fixes",
-      "Type: Enhancement": "Enhancements"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
