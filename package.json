@@ -77,6 +77,11 @@
     "remove": "^0.1.5"
   },
   "packageManager": "yarn@1.22.19",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
