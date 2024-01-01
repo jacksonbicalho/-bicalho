@@ -8,18 +8,19 @@
  */
 
 import prompts from "prompts";
-import kleur from 'kleur';
+import kleur from "kleur";
 import { utilities, WorkSpace } from "@bicalho/utilities";
 
-prompts.override(require('yargs').argv);
+prompts.override(require("yargs").argv);
 
 type PackageChoice = {
-  title: string, description: string, value: string
+  title: string;
+  description: string;
+  value: string;
 };
 
 export const methodsLocal = {
   async init(_args?: string[]) {
-
     const workSpaces = utilities.listWorkSpaces();
 
     const packagesChoices: PackageChoice[] = [];
@@ -32,7 +33,6 @@ export const methodsLocal = {
       });
     });
 
-
     const response = await prompts([
       {
         type: "multiselect",
@@ -43,7 +43,6 @@ export const methodsLocal = {
     ]);
 
     console.log("[2023-12-31 20:05:13] >>>>> response: ", response);
-
   },
 
   check(args?: string[]) {

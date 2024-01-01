@@ -66,25 +66,24 @@ export const run = async (command: string, args?: string[]) => {
   }
 
   switch (command) {
-    case 'init':
+    case "init":
       methodsLocal.init(args);
       break;
 
     default:
       break;
   }
-
 };
 
 const args = process.argv.slice(2);
-const program = createCommand('cli');
+const program = createCommand("cli");
 program
-  .name('cli')
-  .usage('command [options]')
-  .version('0.1.0')
-  .command('init')
-  .description('Install depencies')
-  .option('--yes', 'Install all dependencies', false)
-  .action(() => run('init', args.slice(1)));
+  .name("cli")
+  .usage("command [options]")
+  .version("0.1.0")
+  .command("init")
+  .description("Install depencies")
+  .option("--yes", "Install all dependencies", false)
+  .action(() => run("init", args.slice(1)));
 
 program.parse(process.argv);
