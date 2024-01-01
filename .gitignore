@@ -52,6 +52,7 @@ api-extractor.json
 !**/.yarn/versions
 **/.pnp.*
 
+
 crowdin-cli.jar
 
 # We don't want these temp files
