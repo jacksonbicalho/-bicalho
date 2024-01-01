@@ -51,6 +51,7 @@ RUN rm -rf /usr/local/bin/yarn \
   && apk --no-cache update \
   && apk --no-cache upgrade \
   && apk add --no-cache \
+  nano \
   openssh \
   bash \
   bash-completion \
@@ -130,7 +131,8 @@ RUN mkdir -p /home/${DOCKER_USER_NAME}/.ssh && \
   chmod 600 /home/${DOCKER_USER_NAME}/.ssh/id_rsa
 
 RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
-  && git config --global user.email "${GIT_CONFIG_USER_EMAIL}"
+  && git config --global user.email "${GIT_CONFIG_USER_EMAIL}" \
+  && git config --global core.editor "nano"
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "node" ]
