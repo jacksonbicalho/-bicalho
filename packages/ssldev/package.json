@@ -1,6 +1,6 @@
 {
   "name": "@bicalho/ssldev",
-  "version": "0.0.5-dev.2",
+  "version": "0.0.5-dev.3",
   "description": "development https server",
   "author": {
     "name": "Jackson Bicalho",

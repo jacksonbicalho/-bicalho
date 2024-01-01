@@ -1,6 +1,6 @@
 {
   "name": "@bicalho/cli",
-  "version": "0.0.1-dev.5",
+  "version": "0.0.1-dev.6",
   "description": "cli toolls",
   "author": {
     "name": "Jackson Bicalho",
@@ -35,7 +35,7 @@
     "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo"
   },
   "dependencies": {
-    "@bicalho/utilities": "^0.0.5-dev.2",
+    "@bicalho/utilities": "^0.0.5-dev.3",
     "commander": "^11.1.0",
     "prompts": "^2.4.2",
     "serve-handler": "^6.1.5"
