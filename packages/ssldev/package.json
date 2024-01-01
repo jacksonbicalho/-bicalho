@@ -1,7 +1,7 @@
 {
   "name": "@bicalho/ssldev",
   "version": "0.0.5-dev.2",
-  "description": "Development https server",
+  "description": "development https server",
   "author": {
     "name": "Jackson Bicalho",
     "email": "jacksonbicalho@gmail.com",
@@ -37,7 +37,6 @@
     "start": "node ./build/index.js"
   },
   "dependencies": {
-    "@bicalho/custom-config": "^0.0.5-dev.2",
     "serve-handler": "^6.1.5"
   },
   "devDependencies": {

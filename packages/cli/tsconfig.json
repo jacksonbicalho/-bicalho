@@ -11,6 +11,9 @@
   "references": [
     {
       "path": "../custom-config"
+    },
+    {
+      "path": "../utilities"
     }
   ]
 }
