@@ -1,7 +1,7 @@
 {
   "name": "@bicalho/cli",
   "version": "0.0.1-dev.5",
-  "description": "Cli - ferramentas",
+  "description": "cli toolls",
   "author": {
     "name": "Jackson Bicalho",
     "email": "jacksonbicalho@gmail.com",
@@ -32,11 +32,10 @@
     "cli": "./build/bin/cli.js"
   },
   "scripts": {
-    "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo",
-    "cli": "node  ./build/bin/cli.js"
+    "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo"
   },
   "dependencies": {
-    "@bicalho/custom-config": "0.0.5-dev.2",
+    "@bicalho/utilities": "^0.0.5-dev.2",
     "commander": "^11.1.0",
     "prompts": "^2.4.2",
     "serve-handler": "^6.1.5"
