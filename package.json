@@ -20,6 +20,7 @@
     "build:utilities": "yarn workspace @bicalho/utilities build",
     "build:cli": "yarn workspace @bicalho/cli build",
     "build:all": "yarn build:custom-config && yarn build:ssldev && yarn build:utilities && yarn build:cli",
+    "test:2": "yarn workspace @bicalho/cli test",
     "test": "yarn lint && jest --config jest/jest.config.ts",
     "test:cov": "rm -rf coverage && jest --coverage --config jest/jest.config.ts",
     "format:base": "prettier \"packages/**/src/*.ts\" \"packages/**/src/__tests__/*.spec.ts\" \"packages/**/build/*.js\"",
@@ -33,7 +34,7 @@
     "cli": "npx @bicalho/cli"
   },
   "devDependencies": {
-    "@bicalho/cli": "^0.0.1-dev.5",
+    "@bicalho/cli": "workspace:*",
     "@commander-js/extra-typings": "^11.1.0",
     "@jest/globals": "^29.7.0",
     "@lerna-lite/publish": "^3.1.0",
@@ -41,6 +42,7 @@
     "@types/import-local": "^3.1.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.6",
+    "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
     "commander": "^11.1.0",
@@ -60,13 +62,14 @@
     "ts-node": "^10.9.2",
     "types-package-json": "^2.0.39",
     "typescript": "^5.3.3",
-    "workspace": "^0.0.1-preview.1"
+    "workspace": "^0.0.1-preview.1",
+    "yargs": "^17.7.2"
   },
   "engines": {
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@bicalho/utilities": "./packages/utilities/",
+    "@bicalho/utilities": "workspace:*",
     "global": "^4.4.0",
     "jest-serializer-ansi": "^1.0.3",
     "remove": "^0.1.5"

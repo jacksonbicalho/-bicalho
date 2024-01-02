@@ -28,14 +28,12 @@
     },
     "./package.json": "./package.json"
   },
-  "bin": {
-    "cli": "./build/bin/cli.js"
-  },
+  "bin": "./build/bin/cli.js",
   "scripts": {
     "build": "rm -rf ./build && tsc -p ./tsconfig.build.json && rm -rf tsconfig.build.tsbuildinfo"
   },
   "dependencies": {
-    "@bicalho/utilities": "^0.0.5-dev.3",
+    "@bicalho/utilities": "workspace:*",
     "commander": "^11.1.0",
     "prompts": "^2.4.2",
     "serve-handler": "^6.1.5"

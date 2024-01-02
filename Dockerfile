@@ -80,7 +80,6 @@ EOF
 
 RUN cp /etc/skel/.bashrc /etc/skel/.profile
 
-
 RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
   && adduser -S -G ${DOCKER_USER_NAME} -u ${DOCKER_USER_UID} ${DOCKER_USER_NAME} \
   --shell /bin/bash \
@@ -88,6 +87,11 @@ RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
   -k /etc/skel
 
 RUN cat /etc/profile > /home/${DOCKER_USER_NAME}/.profile
+
+RUN corepack enable
+
+RUN yarn set version berry
+
 
 WORKDIR ${DOCKER_WORK_DIR}
 
@@ -130,6 +134,10 @@ RUN mkdir -p /home/${DOCKER_USER_NAME}/.ssh && \
 RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
   && git config --global user.email "${GIT_CONFIG_USER_EMAIL}" \
   && git config --global core.editor "nano"
+
+RUN git commit add -A \
+&& git commit -am "feat(Yarn2): Atualizando versão do yarn"
+
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "node" ]
