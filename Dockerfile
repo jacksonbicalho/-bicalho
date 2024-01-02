@@ -35,6 +35,13 @@ ENV NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
 ARG DOCKER_WORK_DIR
 ENV DOCKER_WORK_DIR ${DOCKER_WORK_DIR:-$DOCKER_WORK_DIR_DEFAULT}
 
+ARG HOME_USER=/home/${DOCKER_USER_NAME}
+ENV HOME_USER ${HOME_USER}
+
+ARG NPM_CONFIG_PREFIX=${HOME_USER}/.npm-global
+ENV NPM_CONFIG_PREFIX ${HOME_USER}
+
+
 COPY \
   package.json* \
   yarn.lock* \
@@ -45,7 +52,12 @@ ADD .yarn* /.yarn
 RUN \
   rm -rf /usr/local/bin/yarn \
   && rm -rf /usr/local/bin/yarnpkg \
+  && npm install -g npm@latest \
   && npm uninstall --loglevel warn --global pnpm \
+  && npm -i g yarn \
+  && corepack enable \
+  && yarn set version ${YARN_VERSION} \
+  && yarn --version \
   && deluser --remove-home node \
   && apk --no-cache update \
   && apk --no-cache upgrade \
@@ -90,12 +102,6 @@ RUN chmod -R +x /usr/local/bin/
 
 RUN chown -R ${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./
 
-RUN npm install -g npm@latest \
- && npm -i g yarn \
- && corepack enable \
- && yarn set version ${YARN_VERSION} \
- && yarn install
-
 USER ${DOCKER_USER_NAME}
 
 ARG GIT_CONFIG_USER_NAME
@@ -119,6 +125,9 @@ RUN mkdir -p /home/${DOCKER_USER_NAME}/.ssh && \
 RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
   && git config --global user.email "${GIT_CONFIG_USER_EMAIL}" \
   && git config --global core.editor "nano"
+
+RUN yarn install
+
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "node" ]
@@ -144,26 +153,3 @@ ARG NPM_AUTH_TOKEN
 ENV NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
 
 EXPOSE ${SERVER_PORT}
-
-
-##################################
-# publish
-##################################
-FROM base as publish
-ARG DOCKER_LABEL_KEY
-ENV DOCKER_LABEL_KEY ${DOCKER_LABEL_KEY}
-
-ARG DOCKER_LABEL_VALUE
-ENV DOCKER_LABEL_VALUE ${DOCKER_LABEL_VALUE}
-
-LABEL ${DOCKER_LABEL_KEY}=${DOCKER_LABEL_VALUE}
-
-ENV NODE_ENV=development
-
-ARG NPM_AUTH_TOKEN
-ENV NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
-
-COPY --from=base --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} /app/package.json /app/package.json
-COPY --from=base --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} /app/yarn.lock /app/yarn.lock
-
-

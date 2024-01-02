@@ -30,11 +30,12 @@
     "lint:fix": "yarn lint --fix",
     "new-version": "npx lerna version",
     "publish:all": "yarn cache clean --all && yarn test && yarn build:all && npx lerna publish",
-    "commit": "cz",
+    "commit": "git-cz",
     "cli": "npx @bicalho/cli"
   },
   "devDependencies": {
     "@bicalho/cli": "workspace:*",
+    "@commitlint/types": "^18.4.3",
     "@jest/globals": "^29.7.0",
     "@lerna-lite/publish": "^3.1.0",
     "@lerna-lite/version": "^3.1.0",
@@ -46,6 +47,7 @@
     "@typescript-eslint/parser": "^6.16.0",
     "commander": "^11.1.0",
     "commitizen": "^4.3.0",
+    "cosmiconfig-typescript-loader": "^5.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.56.0",
@@ -75,12 +77,13 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./commitizen.config"
     }
   },
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
     }
-  }
+  },
+  "packageManager": "yarn@3.7.0"
 }
