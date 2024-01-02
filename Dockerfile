@@ -1,6 +1,6 @@
 ARG DOCKER_WORK_DIR_DEFAULT=/usr/src/app
 ARG NODE_VERSION=18.18.2
-ARG YARN_VERSION=1.22.19
+ARG YARN_VERSION=3.7.0
 
 # #############################
 # # base: build for Base
@@ -8,6 +8,9 @@ ARG YARN_VERSION=1.22.19
 FROM node:${NODE_VERSION}-alpine As base
 
 LABEL package=bicalho
+
+ARG YARN_VERSION=3.7.0
+ENV YARN_VERSION=${YARN_VERSION}
 
 ARG DOCKER_LABEL_KEY
 ENV DOCKER_LABEL_KEY ${DOCKER_LABEL_KEY}
@@ -26,8 +29,8 @@ ENV DOCKER_USER_UID ${DOCKER_USER_UID:-36891}
 ARG DOCKER_USER_NAME ${DOCKER_USER_NAME}
 ENV DOCKER_USER_NAME ${DOCKER_USER_NAME}
 
-ARG NPM_TOKEN ${NPM_TOKEN}
-ENV NPM_TOKEN ${NPM_TOKEN}
+ARG NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
+ENV NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
 
 ARG DOCKER_WORK_DIR
 ENV DOCKER_WORK_DIR ${DOCKER_WORK_DIR:-$DOCKER_WORK_DIR_DEFAULT}
@@ -35,13 +38,12 @@ ENV DOCKER_WORK_DIR ${DOCKER_WORK_DIR:-$DOCKER_WORK_DIR_DEFAULT}
 COPY \
   package.json* \
   yarn.lock* \
-  .yarnrc* \
-  .npmrc* \
   ./
 
-RUN rm -rf ./cache
+ADD .yarn* /.yarn
 
-RUN rm -rf /usr/local/bin/yarn \
+RUN \
+  rm -rf /usr/local/bin/yarn \
   && rm -rf /usr/local/bin/yarnpkg \
   && npm uninstall --loglevel warn --global pnpm \
   && deluser --remove-home node \
@@ -56,17 +58,7 @@ RUN rm -rf /usr/local/bin/yarn \
   python3 \
   curl \
   git \
-  && apk add --no-cache \
-  --virtual builds-deps \
-  && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
-  && tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/ \
-  && ln -snf /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
-  && ln -snf /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
-  && rm yarn-v$YARN_VERSION.tar.gz \
-  && yarn --version \
-  && curl -sfL RUN curl -sf https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin/ \
-  && apk del builds-deps \
-  && rm -rf /var/cache/apk/*
+  && apk add --no-cache
 
 RUN mkdir -p /etc/skel/
 
@@ -88,28 +80,21 @@ RUN addgroup -S ${DOCKER_USER_NAME} -g ${DOCKER_USER_UID} \
 
 RUN cat /etc/profile > /home/${DOCKER_USER_NAME}/.profile
 
-RUN corepack enable
-
-RUN yarn set version berry
-
-
 WORKDIR ${DOCKER_WORK_DIR}
 
 COPY . ./
 
 COPY ./docker/*.sh /usr/local/bin/
+
 RUN chmod -R +x /usr/local/bin/
 
-RUN if [ "$TARGET" != "publish" ]; then install-dependencies.sh; fi;
+RUN chown -R ${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./
 
-RUN ls -l \
-  && ls /usr/local/bin/ \
-  && /usr/local/bin/node-prune \
-  && chown -R ${DOCKER_USER_NAME}:${DOCKER_USER_NAME} ./
-
-RUN --mount=type=secret,id=npmrc,target=${DOCKER_WORK_DIR}/.npmrc
-
-ENV NODE_REPL_HISTORY=''
+RUN npm install -g npm@latest \
+ && npm -i g yarn \
+ && corepack enable \
+ && yarn set version ${YARN_VERSION} \
+ && yarn install
 
 USER ${DOCKER_USER_NAME}
 
@@ -135,10 +120,6 @@ RUN git config --global user.name "${GIT_CONFIG_USER_NAME}" \
   && git config --global user.email "${GIT_CONFIG_USER_EMAIL}" \
   && git config --global core.editor "nano"
 
-RUN git commit add -A \
-&& git commit -am "feat(Yarn2): Atualizando versão do yarn"
-
-
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "node" ]
 
@@ -159,8 +140,8 @@ ARG SERVER_PORT
 ENV SERVER_PORT ${SERVER_PORT}
 
 
-ARG NPM_TOKEN
-ENV NPM_TOKEN ${NPM_TOKEN}
+ARG NPM_AUTH_TOKEN
+ENV NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
 
 EXPOSE ${SERVER_PORT}
 
@@ -179,8 +160,8 @@ LABEL ${DOCKER_LABEL_KEY}=${DOCKER_LABEL_VALUE}
 
 ENV NODE_ENV=development
 
-ARG NPM_TOKEN
-ENV NPM_TOKEN ${NPM_TOKEN}
+ARG NPM_AUTH_TOKEN
+ENV NPM_AUTH_TOKEN ${NPM_AUTH_TOKEN}
 
 COPY --from=base --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} /app/package.json /app/package.json
 COPY --from=base --chown=${DOCKER_USER_NAME}:${DOCKER_USER_NAME} /app/yarn.lock /app/yarn.lock

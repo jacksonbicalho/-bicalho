@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@bicalho/cli": "workspace:*",
-    "@commander-js/extra-typings": "^11.1.0",
     "@jest/globals": "^29.7.0",
     "@lerna-lite/publish": "^3.1.0",
     "@lerna-lite/version": "^3.1.0",
@@ -74,7 +73,6 @@
     "jest-serializer-ansi": "^1.0.3",
     "remove": "^0.1.5"
   },
-  "packageManager": "yarn@4.0.2",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

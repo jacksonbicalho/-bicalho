@@ -17,7 +17,7 @@ services:
         - DOCKER_WORK_DIR=${DOCKER_WORK_DIR}
         - DOCKER_LABEL_KEY=${DOCKER_LABEL_KEY}
         - DOCKER_LABEL_VALUE=${DOCKER_LABEL_VALUE}
-        - NPM_TOKEN=${NPM_TOKEN}
+        - NPM_AUTH_TOKEN=${NPM_AUTH_TOKEN}
         - TARGET=${TARGET}
         - NODE_ENV=${NODE_ENV}
         - GIT_CONFIG_USER_NAME=${GIT_CONFIG_USER_NAME}
@@ -27,16 +27,9 @@ services:
 
     container_name: ${APP_NAME}-${NODE_ENV}-${TARGET}
     image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}-${TARGET}
-    secrets:
-      - npmrc
 
     volumes:
       - ./:${DOCKER_WORK_DIR}
-      - /home/jackson/.sshgithub:/home/${DOCKER_USER_NAME}/.ssh/github
 
     ports:
       - ${DOCKER_HOST_PORT}:${SERVER_PORT}
-
-secrets:
-  npmrc:
-    file: ./.npmrc

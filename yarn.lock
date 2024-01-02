@@ -451,7 +451,6 @@ __metadata:
   dependencies:
     "@bicalho/cli": "workspace:*"
     "@bicalho/utilities": "workspace:*"
-    "@commander-js/extra-typings": "npm:^11.1.0"
     "@jest/globals": "npm:^29.7.0"
     "@lerna-lite/publish": "npm:^3.1.0"
     "@lerna-lite/version": "npm:^3.1.0"
@@ -509,15 +508,6 @@ __metadata:
     typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft
-
-"@commander-js/extra-typings@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "@commander-js/extra-typings@npm:11.1.0"
-  peerDependencies:
-    commander: 11.1.x
-  checksum: df00ebed009edcd2d79cf4b17d869cea614a509fd4605d4cc04c4b1bf7319eccfda79751ac43d6122d57ab1828074233e829a46367cd7b1b5da9ddc83261d72b
-  languageName: node
-  linkType: hard
 
 "@commitlint/config-validator@npm:^18.4.3":
   version: 18.4.3
